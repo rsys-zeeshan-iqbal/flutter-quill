@@ -154,6 +154,7 @@ class QuillToolbarCameraButton extends StatelessWidget {
         );
         await options.cameraConfigurations.onVideoInsertedCallback
             ?.call(videoFile.path);
+        break;
       case CameraAction.image:
         final imageFile = await imagePickerService.pickImage(
           source: ImageSource.camera,
@@ -167,6 +168,7 @@ class QuillToolbarCameraButton extends StatelessWidget {
         );
         await options.cameraConfigurations.onImageInsertedCallback
             ?.call(imageFile.path);
+        break;
     }
 
     // final file = await switch (cameraAction) {

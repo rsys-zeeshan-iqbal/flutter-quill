@@ -131,13 +131,15 @@ class QuillToolbarVideoButton extends StatelessWidget {
       return;
     }
 
-    final videoUrl = switch (imageSource) {
-      InsertVideoSource.gallery =>
-        (await imagePickerService.pickVideo(source: ImageSource.gallery))?.path,
-      InsertVideoSource.camera =>
-        (await imagePickerService.pickVideo(source: ImageSource.camera))?.path,
-      InsertVideoSource.link => await _typeLink(context),
-    };
+var videoUrl;
+if (imageSource == InsertVideoSource.gallery) {
+  videoUrl = (await imagePickerService.pickVideo(source: ImageSource.gallery))?.path;
+} else if (imageSource == InsertVideoSource.camera) {
+  videoUrl = (await imagePickerService.pickVideo(source: ImageSource.camera))?.path;
+} else if (imageSource == InsertVideoSource.link) {
+  videoUrl = await _typeLink(context);
+}
+
     if (videoUrl == null) {
       return;
     }

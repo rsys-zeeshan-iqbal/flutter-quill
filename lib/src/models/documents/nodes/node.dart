@@ -17,7 +17,7 @@ import 'line.dart';
 ///
 /// The current parent node is exposed by the [parent] property. A node is
 /// considered [mounted] when the [parent] property is not `null`.
-abstract base class Node extends LinkedListEntry<Node> {
+abstract  class Node extends LinkedListEntry<Node> {
   /// Current parent of this node. May be null if this node is not mounted.
   Container? parent;
 
@@ -141,7 +141,7 @@ abstract base class Node extends LinkedListEntry<Node> {
 }
 
 /// Root node of document tree.
-base class Root extends Container<Container<Node?>> {
+ class Root extends Container<Container<Node?>> {
   @override
   Node newInstance() => Root();
 

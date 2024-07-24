@@ -8,7 +8,7 @@ import 'line.dart';
 import 'node.dart';
 
 /// A leaf in Quill document tree.
-abstract base class Leaf extends Node {
+abstract  class Leaf extends Node {
   /// Creates a new [Leaf] with specified [data].
   factory Leaf(Object data) {
     if (data is Embeddable) {
@@ -216,7 +216,7 @@ abstract base class Leaf extends Node {
 /// The reason we are renamed quill Text to [QuillText] so it doesn't
 /// conflict with the one from the widgets, material or cupertino library
 ///
-base class QuillText extends Leaf {
+ class QuillText extends Leaf {
   QuillText([String super.text = ''])
       : assert(!text.contains('\n')),
         super.val();
@@ -249,7 +249,7 @@ base class QuillText extends Leaf {
 /// necessarily mean the embed will look according to that style. For instance,
 /// applying "bold" style to an image gives no effect, while adding a "link" to
 /// an image actually makes the image react to user's action.
-base class Embed extends Leaf {
+ class Embed extends Leaf {
   Embed(Embeddable super.data) : super.val();
 
   // Refer to https://www.fileformat.info/info/unicode/char/fffc/index.htm

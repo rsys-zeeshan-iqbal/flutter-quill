@@ -8,6 +8,18 @@ import '../../logic/extensions/attribute.dart';
 import '../../logic/services/image_saver/s_image_saver.dart';
 import '../embeds/widgets/image.dart';
 
+class FlutterQuillUtilsArgs {
+  FlutterQuillUtilsArgs({
+    this.elementSize,
+    this.margin,
+    this.alignment,
+  });
+
+  OptionalSize? elementSize;
+  double? margin;
+  Alignment? alignment;
+}
+
 RegExp _base64 = RegExp(
   r'^(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=|[A-Za-z0-9+\/]{4})$',
 );
@@ -91,11 +103,7 @@ Future<SaveImageResult> saveImage({
   }
 }
 
-(
-  OptionalSize elementSize,
-  double? margin,
-  Alignment alignment,
-) getElementAttributes(
+FlutterQuillUtilsArgs getElementAttributes(
   Node node,
 ) {
   var elementSize = const OptionalSize(null, null);
@@ -136,7 +144,10 @@ Future<SaveImageResult> saveImage({
             'alignment',
           });
     if (attrs.isEmpty) {
-      return (elementSize, elementMargin, elementAlignment);
+      return FlutterQuillUtilsArgs(
+          elementSize: elementSize,
+          margin: elementMargin,
+          alignment: elementAlignment);
     }
 
     // It css value as string but we will try to support it anyway
@@ -171,7 +182,10 @@ Future<SaveImageResult> saveImage({
     }
   }
 
-  return (elementSize, elementMargin, elementAlignment);
+  return FlutterQuillUtilsArgs(
+      elementSize: elementSize,
+      margin: elementMargin,
+      alignment: elementAlignment);
 }
 
 @immutable

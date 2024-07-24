@@ -4,12 +4,16 @@ import 'package:flutter_quill/flutter_quill.dart' show Attribute, Node;
 /// Prefer the width, and height from the css style attribute if exits
 /// it can be `auto` or `100px` so it's specific to HTML && CSS
 /// if not, we will use the one from attributes which is usually just an double
-(
-  String height,
-  String width,
-  String margin,
-  String alignment,
-) getWebElementAttributes(
+class WebUtilsArgs {
+    String height;
+  String width;
+  String margin;
+  String alignment;
+
+  WebUtilsArgs( this.height,  this.width,  this.margin,  this.alignment);
+}
+
+WebUtilsArgs getWebElementAttributes(
   Node node,
 ) {
   var height = 'auto';
@@ -46,7 +50,7 @@ import 'package:flutter_quill/flutter_quill.dart' show Attribute, Node;
       width = '${widthValue}px';
     }
 
-    return (height, width, margin, alignment);
+    return WebUtilsArgs(height, width, margin, alignment);
   }
 
   if (heightValue != null) {
@@ -56,5 +60,5 @@ import 'package:flutter_quill/flutter_quill.dart' show Attribute, Node;
     width = '${widthValue}px';
   }
 
-  return (height, width, margin, alignment);
+  return WebUtilsArgs(height, width, margin, alignment);
 }

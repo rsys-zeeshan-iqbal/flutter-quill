@@ -21,6 +21,12 @@ typedef ToggleStyleButtonBuilder = Widget Function(
   QuillIconTheme? iconTheme,
 ]);
 
+class ToolbarTipAndIconArgs {
+  ToolbarTipAndIconArgs(this.value, this.iconData);
+  String? value;
+  IconData iconData;
+}
+
 class QuillToolbarToggleStyleButton extends StatefulWidget {
   const QuillToolbarToggleStyleButton({
     required this.options,
@@ -85,36 +91,42 @@ class QuillToolbarToggleStyleButtonState
         context.requireQuillToolbarBaseButtonOptions.iconTheme;
   }
 
-  (String?, IconData) get _defaultTooltipAndIconData {
+  ToolbarTipAndIconArgs get _defaultTooltipAndIconData {
     switch (widget.attribute.key) {
       case 'bold':
-        return (context.loc.bold, Icons.format_bold);
+        return ToolbarTipAndIconArgs(context.loc.bold, Icons.format_bold);
       case 'script':
         if (widget.attribute.value == ScriptAttributes.sub.value) {
-          return (context.loc.subscript, Icons.subscript);
+          return ToolbarTipAndIconArgs(context.loc.subscript, Icons.subscript);
         }
-        return (context.loc.superscript, Icons.superscript);
+        return ToolbarTipAndIconArgs(
+            context.loc.superscript, Icons.superscript);
       case 'italic':
-        return (context.loc.italic, Icons.format_italic);
+        return ToolbarTipAndIconArgs(context.loc.italic, Icons.format_italic);
       case 'small':
-        return (context.loc.small, Icons.format_size);
+        return ToolbarTipAndIconArgs(context.loc.small, Icons.format_size);
       case 'underline':
-        return (context.loc.underline, Icons.format_underline);
+        return ToolbarTipAndIconArgs(
+            context.loc.underline, Icons.format_underline);
       case 'strike':
-        return (context.loc.strikeThrough, Icons.format_strikethrough);
+        return ToolbarTipAndIconArgs(
+            context.loc.strikeThrough, Icons.format_strikethrough);
       case 'code':
-        return (context.loc.inlineCode, Icons.code);
+        return ToolbarTipAndIconArgs(context.loc.inlineCode, Icons.code);
       case 'direction':
-        return (context.loc.textDirection, Icons.format_textdirection_r_to_l);
+        return ToolbarTipAndIconArgs(
+            context.loc.textDirection, Icons.format_textdirection_r_to_l);
       case 'list':
         if (widget.attribute.value == 'bullet') {
-          return (context.loc.bulletList, Icons.format_list_bulleted);
+          return ToolbarTipAndIconArgs(
+              context.loc.bulletList, Icons.format_list_bulleted);
         }
-        return (context.loc.numberedList, Icons.format_list_numbered);
+        return ToolbarTipAndIconArgs(
+            context.loc.numberedList, Icons.format_list_numbered);
       case 'code-block':
-        return (context.loc.codeBlock, Icons.code);
+        return ToolbarTipAndIconArgs(context.loc.codeBlock, Icons.code);
       case 'blockquote':
-        return (context.loc.quote, Icons.format_quote);
+        return ToolbarTipAndIconArgs(context.loc.quote, Icons.format_quote);
       default:
         throw ArgumentError(
           'Could not find the default tooltip for '
@@ -126,13 +138,13 @@ class QuillToolbarToggleStyleButtonState
   String? get tooltip {
     return options.tooltip ??
         context.requireQuillToolbarBaseButtonOptions.tooltip ??
-        _defaultTooltipAndIconData.$1;
+        _defaultTooltipAndIconData.value;
   }
 
   IconData get iconData {
     return options.iconData ??
         context.requireQuillToolbarBaseButtonOptions.iconData ??
-        _defaultTooltipAndIconData.$2;
+        _defaultTooltipAndIconData.iconData;
   }
 
   void _onPressed() {

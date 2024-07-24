@@ -33,16 +33,17 @@ class QuillEditorImageEmbedBuilder extends EmbedBuilder {
     assert(!kIsWeb, 'Please provide image EmbedBuilder for Web');
 
     final imageSource = standardizeImageUrl(node.value.data);
-    final ((imageSize), margin, alignment) = getElementAttributes(node);
+    final FlutterQuillUtilsArgs flutterQuillUtilsArgs =
+        getElementAttributes(node);
 
-    final width = imageSize.width;
-    final height = imageSize.height;
+    final width = flutterQuillUtilsArgs.elementSize?.width;
+    final height = flutterQuillUtilsArgs.elementSize?.height;
 
     final image = getImageWidgetByImageSource(
       imageSource,
       imageProviderBuilder: configurations.imageProviderBuilder,
       imageErrorWidgetBuilder: configurations.imageErrorWidgetBuilder,
-      alignment: alignment,
+      alignment: flutterQuillUtilsArgs.alignment ?? Alignment.center,
       height: height,
       width: width,
       assetsPrefix: QuillSharedExtensionsConfigurations.get(context: context)
@@ -119,26 +120,30 @@ class QuillEditorImageEmbedBuilder extends EmbedBuilder {
           () => showDialog(
                 context: context,
                 builder: (_) {
-                  return QuillProvider.value(
-                    value: context.requireQuillProvider,
-                    child: FlutterQuillLocalizationsWidget(
-                      child: ImageOptionsMenu(
-                        controller: controller,
-                        configurations: configurations,
-                        imageSource: imageSource,
-                        imageSize: imageSize,
-                        isReadOnly: readOnly,
-                        imageSaverService: imageSaverService,
+                  if (flutterQuillUtilsArgs.elementSize != null) {
+                    return QuillProvider.value(
+                      value: context.requireQuillProvider,
+                      child: FlutterQuillLocalizationsWidget(
+                        child: ImageOptionsMenu(
+                          controller: controller,
+                          configurations: configurations,
+                          imageSource: imageSource,
+                          imageSize: flutterQuillUtilsArgs.elementSize!,
+                          isReadOnly: readOnly,
+                          imageSaverService: imageSaverService,
+                        ),
                       ),
-                    ),
-                  );
+                    );
+                  } else {
+                    return const SizedBox();
+                  }
                 },
               ),
       child: Builder(
         builder: (context) {
-          if (margin != null) {
+          if (flutterQuillUtilsArgs.margin != null) {
             return Padding(
-              padding: EdgeInsets.all(margin),
+              padding: EdgeInsets.all(flutterQuillUtilsArgs.margin!),
               child: image,
             );
           }

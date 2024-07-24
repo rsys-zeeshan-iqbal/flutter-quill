@@ -40,17 +40,17 @@ class QuillEditorWebVideoEmbedBuilder extends EmbedBuilder {
       }
     }
 
-    final (height, width, margin, alignment) = getWebElementAttributes(node);
+    final WebUtilsArgs webUtilsArgs = getWebElementAttributes(node);
 
     ui.PlatformViewRegistry().registerViewFactory(
       videoUrl,
       (id) => html.IFrameElement()
-        ..style.width = width
-        ..style.height = height
+        ..style.width =webUtilsArgs. width
+        ..style.height =webUtilsArgs. height
         ..src = videoUrl
         ..style.border = 'none'
-        ..style.margin = margin
-        ..style.alignSelf = alignment
+        ..style.margin = webUtilsArgs.margin
+        ..style.alignSelf =webUtilsArgs. alignment
         ..attributes['loading'] = 'lazy',
     );
 

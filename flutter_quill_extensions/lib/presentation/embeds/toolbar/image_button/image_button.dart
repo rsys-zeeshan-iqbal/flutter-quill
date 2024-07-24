@@ -147,17 +147,15 @@ class QuillToolbarImageButton extends StatelessWidget {
       return;
     }
 
-    final imageUrl = switch (source) {
-      InsertImageSource.gallery => (await imagePickerService.pickImage(
-          source: ImageSource.gallery,
-        ))
-            ?.path,
-      InsertImageSource.link => await _typeLink(context),
-      InsertImageSource.camera => (await imagePickerService.pickImage(
-          source: ImageSource.camera,
-        ))
-            ?.path,
-    };
+var imageUrl;
+if (source == InsertImageSource.gallery) {
+  imageUrl = (await imagePickerService.pickImage(source: ImageSource.gallery))?.path;
+} else if (source == InsertImageSource.link) {
+  imageUrl = await _typeLink(context);
+} else if (source == InsertImageSource.camera) {
+  imageUrl = (await imagePickerService.pickImage(source: ImageSource.camera))?.path;
+}
+
     if (imageUrl == null) {
       return;
     }

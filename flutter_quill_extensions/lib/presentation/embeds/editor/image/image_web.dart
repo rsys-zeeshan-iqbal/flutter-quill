@@ -33,7 +33,7 @@ class QuillEditorWebImageEmbedBuilder extends EmbedBuilder {
   ) {
     assert(kIsWeb, 'ImageEmbedBuilderWeb is only for web platform');
 
-    final (height, width, margin, alignment) = getWebElementAttributes(node);
+    final WebUtilsArgs webUtilsArgs = getWebElementAttributes(node);
 
     var imageSource = node.value.data.toString();
 
@@ -53,10 +53,10 @@ class QuillEditorWebImageEmbedBuilder extends EmbedBuilder {
     ui.PlatformViewRegistry().registerViewFactory(imageSource, (viewId) {
       return html.ImageElement()
         ..src = imageSource
-        ..style.height = height
-        ..style.width = width
-        ..style.margin = margin
-        ..style.alignSelf = alignment
+        ..style.height = webUtilsArgs.height
+        ..style.width = webUtilsArgs.width
+        ..style.margin = webUtilsArgs.margin
+        ..style.alignSelf = webUtilsArgs.alignment
         ..attributes['loading'] = 'lazy';
     });
 

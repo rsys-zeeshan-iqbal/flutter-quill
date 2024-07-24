@@ -37,15 +37,15 @@ class QuillEditorVideoEmbedBuilder extends EmbedBuilder {
         readOnly: readOnly,
       );
     }
-    final ((elementSize), margin, alignment) = getElementAttributes(node);
+    final FlutterQuillUtilsArgs flutterQuillUtilsArgs = getElementAttributes(node);
 
-    final width = elementSize.width;
-    final height = elementSize.height;
+    final width =flutterQuillUtilsArgs. elementSize?.width;
+    final height = flutterQuillUtilsArgs.elementSize?.height;
     return Container(
       width: width,
       height: height,
-      margin: EdgeInsets.all(margin ?? 0.0),
-      alignment: alignment,
+      margin: EdgeInsets.all(flutterQuillUtilsArgs.margin ?? 0.0),
+      alignment:flutterQuillUtilsArgs. alignment,
       child: VideoApp(
         videoUrl: videoUrl,
         context: context,
