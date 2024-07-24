@@ -20,13 +20,13 @@ platforms:
   windows:
 
 environment:
-  sdk: '>=3.1.5 <4.0.0'
-  flutter: ">=1.17.0"
+  sdk: ">=2.19.0 <3.16.0"
+  flutter: 3.16.0
 
 dependencies:
   flutter:
     sdk: flutter
-  flutter_quill: ^8.2.5
+  flutter_quill: 8.6.0
   flutter_test:
     sdk: flutter
 

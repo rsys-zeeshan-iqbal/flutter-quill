@@ -94,35 +94,43 @@ class MyApp extends StatelessWidget {
             },
             home: Builder(
               builder: (context) {
-                final screen = switch (state.defaultScreen) {
-                  DefaultScreen.home => const HomeScreen(),
-                  DefaultScreen.settings => const SettingsScreen(),
-                  DefaultScreen.imagesSample => QuillScreen(
-                      args: QuillScreenArgs(
-                        document: Document.fromJson(quillImagesSample),
-                      ),
+                var screen;
+                if (state.defaultScreen == DefaultScreen.home) {
+                  screen = const HomeScreen();
+                } else if (state.defaultScreen == DefaultScreen.settings) {
+                  screen = const SettingsScreen();
+                } else if (state.defaultScreen == DefaultScreen.imagesSample) {
+                  screen = QuillScreen(
+                    args: QuillScreenArgs(
+                      document: Document.fromJson(quillImagesSample),
                     ),
-                  DefaultScreen.videosSample => QuillScreen(
-                      args: QuillScreenArgs(
-                        document: Document.fromJson(quillVideosSample),
-                      ),
+                  );
+                } else if (state.defaultScreen == DefaultScreen.videosSample) {
+                  screen = QuillScreen(
+                    args: QuillScreenArgs(
+                      document: Document.fromJson(quillVideosSample),
                     ),
-                  DefaultScreen.textSample => QuillScreen(
-                      args: QuillScreenArgs(
-                        document: Document.fromJson(quillTextSample),
-                      ),
+                  );
+                } else if (state.defaultScreen == DefaultScreen.textSample) {
+                  screen = QuillScreen(
+                    args: QuillScreenArgs(
+                      document: Document.fromJson(quillTextSample),
                     ),
-                  DefaultScreen.emptySample => QuillScreen(
-                      args: QuillScreenArgs(
-                        document: Document(),
-                      ),
+                  );
+                } else if (state.defaultScreen == DefaultScreen.emptySample) {
+                  screen = QuillScreen(
+                    args: QuillScreenArgs(
+                      document: Document(),
                     ),
-                  DefaultScreen.defaultSample => QuillScreen(
-                      args: QuillScreenArgs(
-                        document: Document.fromJson(quillDefaultSample),
-                      ),
+                  );
+                } else if (state.defaultScreen == DefaultScreen.defaultSample) {
+                  screen = QuillScreen(
+                    args: QuillScreenArgs(
+                      document: Document.fromJson(quillDefaultSample),
                     ),
-                };
+                  );
+                }
+
                 return AnimatedSwitcher(
                   duration: const Duration(milliseconds: 330),
                   transitionBuilder: (child, animation) {

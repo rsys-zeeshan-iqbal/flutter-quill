@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_quill/extensions.dart';
 
 @immutable
-final class CupertinoDialogActionOptions {
+class CupertinoDialogActionOptions {
   const CupertinoDialogActionOptions({
     this.isDefaultAction = false,
   });
@@ -12,7 +12,7 @@ final class CupertinoDialogActionOptions {
 }
 
 @immutable
-final class MaterialDialogActionOptions {
+class MaterialDialogActionOptions {
   const MaterialDialogActionOptions({
     this.textStyle,
   });
