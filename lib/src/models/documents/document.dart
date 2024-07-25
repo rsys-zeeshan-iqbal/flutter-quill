@@ -448,5 +448,5 @@ enum ChangeSource {
   local,
 
   /// Change originated from a remote action.
-  remote,
+  remote, LOCAL,
 }
