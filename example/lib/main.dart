@@ -60,6 +60,7 @@ class MyApp extends StatelessWidget {
             supportedLocales: FlutterQuillLocalizations.supportedLocales,
             routes: {
               SettingsScreen.routeName: (context) => const SettingsScreen(),
+              
             },
             onGenerateRoute: (settings) {
               final name = settings.name;
@@ -80,6 +81,7 @@ class MyApp extends StatelessWidget {
                   },
                 );
               }
+
               return null;
             },
             onUnknownRoute: (settings) {

@@ -13,6 +13,7 @@ import '../../quill/samples/quill_text_sample.dart';
 import '../../quill/samples/quill_videos_sample.dart';
 import '../../settings/widgets/settings_screen.dart';
 import 'example_item.dart';
+import 'quille_tagged_user.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -176,6 +177,14 @@ class HomeScreen extends StatelessWidget {
                         document: Document(),
                       ),
                     ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(
+                        QuillEditorPage.route,
+                      );
+                    },
+                    child: Text("User tag"),
                   ),
                 ],
               ),

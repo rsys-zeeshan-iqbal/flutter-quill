@@ -23,7 +23,7 @@ dependencies:
   html2md: ^1.3.1
   # markdown: ^7.1.1
   delta_markdown_converter:
-    path: ../../delta_markdown_converter-0.0.2
+    path: ../delta_markdown_converter-0.0.2
 
 
 dev_dependencies:

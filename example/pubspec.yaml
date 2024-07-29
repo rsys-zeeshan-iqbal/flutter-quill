@@ -44,7 +44,7 @@ dependencies:
   # For drag and drop feature
   desktop_drop: ^0.4.4
   # For picking quill document files
-  file_picker: ^6.1.1
+  file_picker: 
   # For sharing text
   share_plus: ^7.2.1
 

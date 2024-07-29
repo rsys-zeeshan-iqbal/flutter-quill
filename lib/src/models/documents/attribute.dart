@@ -79,6 +79,8 @@ class Attribute<T> extends Equatable {
 
   static const LinkAttribute link = LinkAttribute(null);
 
+  static const UserTagAttribute userTag = UserTagAttribute(null);
+
   static const ColorAttribute color = ColorAttribute(null);
 
   static const BackgroundAttribute background = BackgroundAttribute(null);
@@ -302,6 +304,11 @@ class SizeAttribute extends Attribute<String?> {
 
 class LinkAttribute extends Attribute<String?> {
   const LinkAttribute(String? val) : super('link', AttributeScope.inline, val);
+}
+
+class UserTagAttribute extends Attribute<String?> {
+  const UserTagAttribute(String? val)
+      : super('link', AttributeScope.inline, val);
 }
 
 class ColorAttribute extends Attribute<String?> {
