@@ -118,7 +118,6 @@ class QuillToolbarArrowIndicatedButtonListState
               hasScrollBody: false,
               child: widget.axis == Axis.horizontal
                   ? Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: widget.buttons,
                     )
                   : Column(
